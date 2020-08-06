@@ -40,11 +40,7 @@ struct FMPSyncConfigStruct
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHTTPOnResponseReceivedDelegate, FString, HttpData);
-<<<<<<< HEAD
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FHTTPOnDownloadResponseReceivedDelegate, bool, wasSuccess, FString, errorString);
-=======
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FHTTPOnDownloadResponseReceivedDelegate);
->>>>>>> 615ea364376eae607403c794ee73f4fc2b0e10a3
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FonUserAdd, FString, username, const TArray<FgameStruct>&, games);
 
 UCLASS()
@@ -102,10 +98,7 @@ public:
 	FString myNickname;
 	char API[31];
 	char API_AUTH[32];
-<<<<<<< HEAD
 	FgameStruct downloadedGame;
-=======
->>>>>>> 615ea364376eae607403c794ee73f4fc2b0e10a3
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

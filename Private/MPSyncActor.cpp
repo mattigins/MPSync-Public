@@ -276,10 +276,7 @@ void AMPSyncActor::ClearCurrentlyPlaying()
 
 void AMPSyncActor::HostGame(FgameStruct data)
 {
-<<<<<<< HEAD
     downloadedGame = data;
-=======
->>>>>>> 615ea364376eae607403c794ee73f4fc2b0e10a3
     FString uid = IOnlineSubsystem::Get()->GetIdentityInterface()->GetUniquePlayerId(0)->ToString();
     
     //Create Json File
@@ -320,7 +317,6 @@ void AMPSyncActor::HostGame(FgameStruct data)
 
 void AMPSyncActor::OnDownloadResponseReceived(FHttpRequestPtr Request, FHttpResponsePtr const Response, bool bWasSuccessful)
 {
-<<<<<<< HEAD
     //bWasSuccessful = false;
     FString responseString = Response->GetContentAsString();
     if (responseString.Contains("{{MPSYNC ERROR}}"))
@@ -338,27 +334,12 @@ void AMPSyncActor::OnDownloadResponseReceived(FHttpRequestPtr Request, FHttpResp
     }
     FString errorString = FString::Printf(TEXT("%d\n%s\n%s\n%s"), Response->GetResponseCode(), *uid, *downloadLocation, *responseString);
     MpSyncDownloadResponseReceived.Broadcast(bWasSuccessful, errorString);
-=======
-    FString uid = IOnlineSubsystem::Get()->GetIdentityInterface()->GetUniquePlayerId(0)->ToString();
-    FString x;
-    FString fileName;
-    FPaths::Split(Request->GetURL(), x, fileName, x);
-    //URLDecode hangs the game, so this gets ugly
-    fileName = fileName.Replace(*FString(TEXT("%20")), *FString(TEXT("_"))).Replace(*FString(TEXT("%")), *FString(TEXT("")));
-    FString downloadLocation = FString::Printf(TEXT("%sSaveGames/%s/%s.sav"), *FPaths::ProjectSavedDir(), *uid, *fileName);
-    FFileHelper::SaveArrayToFile(Response->GetContent(), *downloadLocation);
-    MpSyncDownloadResponseReceived.Broadcast();
->>>>>>> 615ea364376eae607403c794ee73f4fc2b0e10a3
 }
 
 void AMPSyncActor::startGame(APlayerController* playerController, FgameStruct data)
 {
-<<<<<<< HEAD
     FString fileName = data.saveFile.Replace(*FString(TEXT("%20")), *FString(TEXT("_"))).Replace(*FString(TEXT("%")), *FString(TEXT("")));
     FString mapOptions = FString::Printf(TEXT("??startloc=%s?sessionName=%s?Visibility=SV_FriendsOnly?loadgame=%s?listen"), *data.mapType, *data.mapName, *fileName);
-=======
-    FString mapOptions = FString::Printf(TEXT("??startloc=%s?sessionName=%s?Visibility=SV_FriendsOnly?loadgame=%s?listen"), *data.mapType, *data.mapName, *data.saveFile);
->>>>>>> 615ea364376eae607403c794ee73f4fc2b0e10a3
     UFGBlueprintFunctionLibrary::CreateSessionAndTravelToMap(playerController,"Persistent_Level", mapOptions, data.mapName,SV_FriendsOnly);
 }
 
